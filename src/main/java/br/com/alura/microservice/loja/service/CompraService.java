@@ -6,8 +6,8 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import br.com.alura.microservice.loja.client.FornecedorClient;
 import br.com.alura.microservice.loja.controller.dto.CompraDTO;
 import br.com.alura.microservice.loja.controller.dto.InfoFornecedorDTO;
 
@@ -16,24 +16,22 @@ public class CompraService {
 
 	@Value("${url.service.fornecedor}")
 	private String urlMicroservicoFornecedor;
-	
-	@Autowired
-	private RestTemplate client;
 
 	@Autowired
 	private DiscoveryClient eurekaClient;
+
+	@Autowired
+	private FornecedorClient fornecedorClient;
 	
 	public void realizaCompra(CompraDTO compra) {
 
-		ResponseEntity<InfoFornecedorDTO> exchange = this.client.exchange(
-				this.urlMicroservicoFornecedor + "/info/" + compra.getEndereco().getEstado(), HttpMethod.GET, null,
-				InfoFornecedorDTO.class);
+		InfoFornecedorDTO info = fornecedorClient.getInfoPorEstado(compra.getEndereco().getEstado());
 		
 		eurekaClient.getInstances("fornecedor").stream().forEach(fornecedor -> {
 			System.out.println("localhost:" + fornecedor.getPort());
 		});
 		
-		System.out.println(exchange.getBody().getEndereco());
+		System.out.println(info.getEndereco());
 
 	}
 
