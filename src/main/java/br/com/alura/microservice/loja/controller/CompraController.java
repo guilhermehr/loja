@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.alura.microservice.loja.controller.dto.CompraDTO;
+import br.com.alura.microservice.loja.dto.CompraDTO;
 import br.com.alura.microservice.loja.model.Compra;
 import br.com.alura.microservice.loja.service.CompraService;
 
@@ -20,6 +20,5 @@ public class CompraController {
 	@RequestMapping(method = RequestMethod.POST)
 	public Compra realizaCompra(@RequestBody CompraDTO compra) {
 		return compraService.realizaCompra(compra);
-		
 	}
 }

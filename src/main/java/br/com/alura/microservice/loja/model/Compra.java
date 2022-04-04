@@ -5,9 +5,12 @@ import lombok.Data;
 @Data
 public class Compra {
 
-	private long pedidoId;
+	private Long id;
+	
+	private Long pedidoId;
 	
 	private Integer tempoDePreparo;
 	
 	private String enderecoDestino;
+
 }
