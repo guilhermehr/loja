@@ -1,5 +1,7 @@
 package br.com.alura.microservice.loja.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -15,5 +17,9 @@ public class Compra {
 	private Integer tempoDePreparo;
 	
 	private String enderecoDestino;
+	
+	private LocalDate dataParaEntrega;
+	
+	private Long voucher;
 
 }
