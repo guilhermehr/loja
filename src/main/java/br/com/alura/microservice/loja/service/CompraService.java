@@ -75,9 +75,6 @@ public class CompraService {
 		compraRepository.save(compraSalva);
 		
 		
-		if(true) throw new RuntimeException();
-		
-		
 		InfoEntregaDTO entregaDto = new InfoEntregaDTO();
 		
 		entregaDto.setPedidoId(pedido.getId());
